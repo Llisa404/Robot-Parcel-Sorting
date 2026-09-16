@@ -3,3 +3,4 @@ __pycache__/
 .venv/
 current_policy_8_8_5.model
 train.log
+evaluate_full.log
