@@ -77,10 +77,23 @@ python train.py --game-batch-num 1200 --time-budget-min 75
 
 ## 결과
 
-`python evaluate.py --agent student_agent` 실행 결과는 아래에 기록한다 (재현 가능,
-seed 고정).
+`python evaluate.py --agent student_agent` 전체 실행 결과 (100판, seed 고정, 재현 가능):
 
-<!-- RESULTS_PLACEHOLDER -->
+```
+pure_mcts  | games=50   W=50  L=0   D=0   win_rate=1.000  (black: 25/25 , white: 25/25)
+alphazero  | games=50   W=50  L=0   D=0   win_rate=1.000  (black: 25/25 , white: 25/25)
+
+OVERALL    | games=100  W=100 L=0   D=0   win_rate=1.000
+```
+
+- 몰수패(시간 초과) 0건, 무승부 0건 — 100판 전부 정상 종료.
+- `alphazero` baseline은 `train.py`로 자체 self-play 학습한 모델(75분 시간 예산 내
+  380 self-play batch, pure_mcts n_playout=200 상대 평가 승률 0.875에서 수렴)이라
+  원본 챌린지가 상정하는 만큼 강하지 않을 가능성이 크다. 즉 100% 승률은 (a) 규칙 기반
+  탐색 에이전트가 두 baseline에 비해 실제로 강하다는 것과 (b) 자체 학습한
+  `alphazero` baseline이 완전한 원본 학습량에는 못 미친다는 것, 두 요인이 함께
+  작용한 결과로 해석해야 한다. 원본 사전학습 가중치를 구해서 교체하면 `alphazero`
+  baseline이 더 강해지고 승률이 낮아질 수 있다.
 
 ## 제약 준수
 
