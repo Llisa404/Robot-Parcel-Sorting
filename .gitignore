@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+.venv/
+current_policy_8_8_5.model
+train.log
